@@ -23,5 +23,13 @@
             var actual = scorer.Roll(0);
             Assert.That(actual, Is.EqualTo(0));
         }
+
+        [Test]
+        public void KnockingDownOnePineShouldReturn1()
+        {
+            BowlingGameScorer scorer = new BowlingGameScorer();
+            var actual = scorer.Roll(1);
+            Assert.That(actual, Is.EqualTo(1));
+        }
     }
 }
