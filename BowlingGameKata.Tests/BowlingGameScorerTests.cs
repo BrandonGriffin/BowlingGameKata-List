@@ -10,6 +10,14 @@
     [TestFixture]
     public class BowlingGameScorerTests
     {
+        private BowlingGameScorer _scorer;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _scorer = new BowlingGameScorer();
+        }
+
         [Test]
         public void ThisTestFails()
         {
@@ -19,32 +27,36 @@
         [Test]
         public void AGutterballShouldReturn0()
         { 
-            BowlingGameScorer scorer = new BowlingGameScorer();
-            scorer.Roll(0);
-            var actual = scorer.GetScore();
+            _scorer.Roll(0);
+            var actual = _scorer.GetScore();
+
             Assert.That(actual, Is.EqualTo(0));
         }
 
         [Test]
         public void KnockingDownOnePineShouldReturn1()
         {
-            BowlingGameScorer scorer = new BowlingGameScorer();
-            scorer.Roll(1);
-            var actual = scorer.GetScore();
+            _scorer.Roll(1);
+            var actual = _scorer.GetScore();
+
             Assert.That(actual, Is.EqualTo(1));
         }
 
         [Test]
         public void AGameOfOnesShouldScore20()
         {
-            BowlingGameScorer scorer = new BowlingGameScorer();
-            for (int i = 0; i < 20; i++)
-            {
-                scorer.Roll(1);
-            }
-            var actual = scorer.GetScore();
-
+            RollMany(1, 20);
+            var actual = _scorer.GetScore();
+            
             Assert.That(actual, Is.EqualTo(20));
+        }
+
+        private void RollMany(int pins, int timesToRoll)
+        {
+            for (int i = 0; i < timesToRoll; i++)
+            {
+                _scorer.Roll(pins);
+            }
         }
     }
 }
