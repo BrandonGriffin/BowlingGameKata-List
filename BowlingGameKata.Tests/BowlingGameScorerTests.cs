@@ -19,27 +19,12 @@
         }
 
         [Test]
-        public void ThisTestFails()
-        {
-            Assert.Fail();
-        }
-
-        [Test]
-        public void AGutterballShouldReturn0()
+        public void AGutterGameShouldReturn0()
         { 
-            _scorer.Roll(0);
+            RollMany(0, 20);
             var actual = _scorer.GetScore();
 
             Assert.That(actual, Is.EqualTo(0));
-        }
-
-        [Test]
-        public void KnockingDownOnePinShouldReturn1()
-        {
-            _scorer.Roll(1);
-            var actual = _scorer.GetScore();
-
-            Assert.That(actual, Is.EqualTo(1));
         }
 
         [Test]
@@ -57,6 +42,7 @@
             _scorer.Roll(4);
             _scorer.Roll(6);
             _scorer.Roll(3);
+            RollMany(0, 17);
             var actual = _scorer.GetScore();
 
             Assert.That(actual, Is.EqualTo(16));
@@ -68,9 +54,19 @@
             _scorer.Roll(10);
             _scorer.Roll(4);
             _scorer.Roll(3);
+            RollMany(0, 17);
             var actual = _scorer.GetScore();
 
             Assert.That(actual, Is.EqualTo(24));
+        }
+
+        [Test]
+        public void APerfectGameShouldGive300()
+        {
+            RollMany(10, 12);
+            var actual = _scorer.GetScore();
+
+            Assert.That(actual, Is.EqualTo(300));
         }
 
         private void RollMany(int pins, int timesToRoll)

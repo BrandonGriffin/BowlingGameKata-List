@@ -8,31 +8,44 @@
     
     public class BowlingGameScorer
     {
-        private int _score;
-        private List<int> _scores = new List<int>();
+        
+        private int[] scores = new int[21];
+        private int numberOfRolls = 0;
         public void Roll(int pins)
         {
-            _scores.Add(pins);
+            scores[numberOfRolls] = pins;
+            numberOfRolls++;
         }
 
         public int GetScore()
         {
-            for (int i = 0; i < _scores.Count; i++)
-			{
-                if (i > 1)
-                {
-                    if ((_scores[i - 1] + _scores[i - 2]) == 10)
-                        _score += _scores[i];
+            var score = 0;
+            var roll = 0;
 
-                    if (_scores[i - 2] == 10)
-                    {
-                        _score += _scores[i - 1];
-                        _score += _scores[i];
-                    }
+            for (int frame = 0; frame < 10; frame++)
+			{
+                if (scores[roll] == 10)
+                {
+                    score += 10;
+                    score += scores[roll + 1];
+                    score += scores[roll + 2];
+                    roll += 1;
                 }
-                _score += _scores[i];
+
+                else if ((scores[roll] + scores[roll + 1]) == 10)
+                {
+                    score += 10;
+                    score += scores[roll + 2];
+                    roll += 2;
+                }
+                else
+                {
+                    score += scores[roll] + scores[roll + 1];
+                    roll += 2;
+                }
 			}
-            return _score;
+
+            return score;
         }
     }
 }
