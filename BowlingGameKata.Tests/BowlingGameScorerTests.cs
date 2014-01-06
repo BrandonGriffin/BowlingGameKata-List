@@ -51,6 +51,17 @@
             Assert.That(actual, Is.EqualTo(20));
         }
 
+        [Test]
+        public void ASpareShouldCountTheNextRollTwice()
+        {
+            _scorer.Roll(4);
+            _scorer.Roll(6);
+            _scorer.Roll(3);
+            var actual = _scorer.GetScore();
+
+            Assert.That(actual, Is.EqualTo(16));
+        }
+
         private void RollMany(int pins, int timesToRoll)
         {
             for (int i = 0; i < timesToRoll; i++)
