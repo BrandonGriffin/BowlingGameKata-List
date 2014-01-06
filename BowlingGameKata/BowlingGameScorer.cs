@@ -19,10 +19,17 @@
         {
             for (int i = 0; i < _scores.Count; i++)
 			{
-			    if(i > 1)
-                    if((_scores[i-1] + _scores[i-2]) == 10)
+                if (i > 1)
+                {
+                    if ((_scores[i - 1] + _scores[i - 2]) == 10)
                         _score += _scores[i];
 
+                    if (_scores[i - 2] == 10)
+                    {
+                        _score += _scores[i - 1];
+                        _score += _scores[i];
+                    }
+                }
                 _score += _scores[i];
 			}
             return _score;
