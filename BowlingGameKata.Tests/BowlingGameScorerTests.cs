@@ -34,7 +34,7 @@
         }
 
         [Test]
-        public void KnockingDownOnePineShouldReturn1()
+        public void KnockingDownOnePinShouldReturn1()
         {
             _scorer.Roll(1);
             var actual = _scorer.GetScore();
