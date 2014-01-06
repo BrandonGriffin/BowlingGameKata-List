@@ -10,7 +10,7 @@
     {
         public int Roll(int pins)
         {
-            throw new NotImplementedException();
+            return pins;
         }
     }
 }
