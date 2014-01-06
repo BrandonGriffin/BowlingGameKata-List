@@ -8,9 +8,15 @@
     
     public class BowlingGameScorer
     {
-        public int Roll(int pins)
+        private int score;
+        public void Roll(int pins)
         {
-            return pins;
+            score += pins;
+        }
+
+        public int GetScore()
+        {
+            return score;
         }
     }
 }

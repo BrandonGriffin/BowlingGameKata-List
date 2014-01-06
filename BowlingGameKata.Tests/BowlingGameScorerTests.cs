@@ -20,7 +20,8 @@
         public void AGutterballShouldReturn0()
         { 
             BowlingGameScorer scorer = new BowlingGameScorer();
-            var actual = scorer.Roll(0);
+            scorer.Roll(0);
+            var actual = scorer.GetScore();
             Assert.That(actual, Is.EqualTo(0));
         }
 
@@ -28,8 +29,22 @@
         public void KnockingDownOnePineShouldReturn1()
         {
             BowlingGameScorer scorer = new BowlingGameScorer();
-            var actual = scorer.Roll(1);
+            scorer.Roll(1);
+            var actual = scorer.GetScore();
             Assert.That(actual, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void AGameOfOnesShouldScore20()
+        {
+            BowlingGameScorer scorer = new BowlingGameScorer();
+            for (int i = 0; i < 20; i++)
+            {
+                scorer.Roll(1);
+            }
+            var actual = scorer.GetScore();
+
+            Assert.That(actual, Is.EqualTo(20));
         }
     }
 }
