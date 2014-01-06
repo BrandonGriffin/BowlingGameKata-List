@@ -62,6 +62,17 @@
             Assert.That(actual, Is.EqualTo(16));
         }
 
+        [Test]
+        public void AStrikeShouldCountTheNextTwoRolls()
+        {
+            _scorer.Roll(10);
+            _scorer.Roll(4);
+            _scorer.Roll(3);
+            var actual = _scorer.GetScore();
+
+            Assert.That(actual, Is.EqualTo(24));
+        }
+
         private void RollMany(int pins, int timesToRoll)
         {
             for (int i = 0; i < timesToRoll; i++)
