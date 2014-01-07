@@ -1,37 +1,33 @@
-﻿namespace BowlingGameKata
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    
+﻿using System;
+
+namespace BowlingGameKata
+{ 
     public class BowlingGameScorer
     {
-        private int[] scores = new int[21];
-        private int numberOfRolls = 0;
+        private Int32[] scores = new Int32[21];
+        private Int32 numberOfRolls = 0;
 
-        public void Roll(int pins)
+        public void Roll(Int32 pins)
         {
             scores[numberOfRolls] = pins;
             numberOfRolls++;
         }
 
-        public int GetScore()
+        public Int32 GetScore()
         {
             var score = 0;
             var roll = 0;
 
-            for (int frame = 0; frame < 10; frame++)
+            for (Int32 frame = 0; frame < 10; frame++)
 			{
                 if (IsAStrike(roll))
                 {
-                    score = AddScoreForStrike(score, roll);
+                    score += AddScoreForStrike(roll);
                     roll += 1;
                 }
                 else if (IsASpare(roll))
                 {
-                    score = AddScoreForSpare(score, roll);
+                    score += AddScoreForSpare(roll);
                     roll += 2;
                 }
                 else
@@ -44,32 +40,27 @@
             return score;
         }
 
-        private int AddScoreForFrame(int roll)
+        private Int32 AddScoreForFrame(Int32 roll)
         {
             return scores[roll] + scores[roll + 1];
         }
 
-        private int AddScoreForSpare(int score, int roll)
+        private Int32 AddScoreForSpare(Int32 roll)
         {
-            score += 10;
-            score += scores[roll + 2];
-            return score;
+            return 10 + scores[roll + 2];
         }
 
-        private int AddScoreForStrike(int score, int roll)
+        private Int32 AddScoreForStrike(Int32 roll)
         {
-            score += 10;
-            score += scores[roll + 1];
-            score += scores[roll + 2];
-            return score;
+            return 10 + scores[roll + 1] + scores[roll + 2];
         }
 
-        private bool IsASpare(int roll)
+        private Boolean IsASpare(Int32 roll)
         {
             return (scores[roll] + scores[roll + 1]) == 10;
         }
 
-        private bool IsAStrike(int roll)
+        private Boolean IsAStrike(Int32 roll)
         {
             return scores[roll] == 10;
         }

@@ -1,12 +1,8 @@
-﻿namespace BowlingGameKata.Tests
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using NUnit.Framework;
+﻿using NUnit.Framework;
+using System;
     
+namespace BowlingGameKata.Tests
+{
     [TestFixture]
     public class BowlingGameScorerTests
     {
@@ -43,6 +39,7 @@
             scorer.Roll(6);
             scorer.Roll(3);
             RollMany(0, 17);
+
             var actual = scorer.GetScore();
 
             Assert.That(actual, Is.EqualTo(16));
@@ -55,6 +52,7 @@
             scorer.Roll(4);
             scorer.Roll(3);
             RollMany(0, 17);
+
             var actual = scorer.GetScore();
 
             Assert.That(actual, Is.EqualTo(24));
@@ -75,14 +73,15 @@
             RollMany(4, 8);
             RollMany(6, 4);
             RollMany(3, 8);
+
             var actual = scorer.GetScore();
 
             Assert.That(actual, Is.EqualTo(80));
         }
 
-        private void RollMany(int pins, int timesToRoll)
+        private void RollMany(Int32 pins, Int32 timesToRoll)
         {
-            for (int i = 0; i < timesToRoll; i++)
+            for (Int32 i = 0; i < timesToRoll; i++)
             {
                 scorer.Roll(pins);
             }
