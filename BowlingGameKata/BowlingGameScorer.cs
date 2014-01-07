@@ -1,15 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace BowlingGameKata
 { 
     public class BowlingGameScorer
     {
-        private Int32[] scores = new Int32[21];
+        private List<Int32> scores = new List<Int32>();
         private Int32 numberOfRolls = 0;
 
         public void Roll(Int32 pins)
         {
-            scores[numberOfRolls] = pins;
+            scores.Add(pins);
             numberOfRolls++;
         }
 
